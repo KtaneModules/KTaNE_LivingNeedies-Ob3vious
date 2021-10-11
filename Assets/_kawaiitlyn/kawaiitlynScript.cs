@@ -1,7 +1,6 @@
 ﻿// You wanted to explore her inside I see?
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
 
@@ -73,24 +72,29 @@ public class kawaiitlynScript : MonoBehaviour
 		Audio.PlaySoundAtTransform(new string[] { "Neutral","Concern","Anxious","Desperate" }[state] + " line " + (pick + 1) + " take " + (Rnd.Range(0, Takes[state][pick]) + 1), Module.transform);
     }
 
-#pragma warning disable 414
+	#pragma warning disable 414
 	private string TwitchHelpMessage = "Just send me any command to be with me. You must stay with me until I'm happy again, though.";
-#pragma warning restore 414
+	#pragma warning restore 414
 	IEnumerator ProcessTwitchCommand(string command)
 	{
 		while (t > 0)
-		{
-			holding = true;
 			yield return null;
-		}
-		holding = false;
 	}
+
 	IEnumerator TwitchHandleForcedSolve()
 	{
 		while (true)
 		{
-			holding = true;
+			if (!holding)
+			{
+				holding = true;
+				Module2.OnHighlight();
+				while (t > 0) yield return null;
+				holding = false;
+				Module2.OnHighlightEnded();
+			}
 			yield return true;
 		}
 	}
+
 }

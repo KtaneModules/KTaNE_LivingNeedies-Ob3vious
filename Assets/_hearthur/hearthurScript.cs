@@ -82,21 +82,21 @@ public class hearthurScript : MonoBehaviour
 		}
 	}
 
-#pragma warning disable 414
-	private string TwitchHelpMessage = "Please don't send anything. You'll only cause problems.";
-#pragma warning restore 414
+	#pragma warning disable 414
+	private string TwitchHelpMessage = "Please don't send anything while I'm beating. You'll only cause problems.";
+	#pragma warning restore 414
 	IEnumerator ProcessTwitchCommand(string command)
 	{
-		holding = true;
-		yield return null;
-		holding = false;
+		if (active)
+			yield return "strike";
+		else
+			yield return null;
 	}
+
 	IEnumerator TwitchHandleForcedSolve()
 	{
 		while (true)
-		{
-			holding = false;
 			yield return true;
-		}
 	}
+
 }
