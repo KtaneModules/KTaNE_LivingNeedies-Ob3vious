@@ -87,10 +87,9 @@ public class hearthurScript : MonoBehaviour
 	#pragma warning restore 414
 	IEnumerator ProcessTwitchCommand(string command)
 	{
+		yield return null;
 		if (active)
 			yield return "strike";
-		else
-			yield return null;
 	}
 
 	IEnumerator TwitchHandleForcedSolve()

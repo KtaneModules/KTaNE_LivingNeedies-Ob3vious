@@ -13,6 +13,7 @@ public class kawaiitlynScript : MonoBehaviour
 
 	private bool positioned = false;
 	private bool holding = false;
+	private bool highlight = false;
 	private int t = 0;
 
 	private static readonly int[][] Takes = { new int[] { 2, 2, 2, 2, 3, 2, 2 }, new int[] { 3, 3, 3, 3, 3, 3, 3, 3 }, new int[] { 3, 3, 3, 3, 3, 3, 3, 3 }, new int[] { 3, 3, 4, 4, 3, 3, 3 } };
@@ -22,6 +23,8 @@ public class kawaiitlynScript : MonoBehaviour
 		Module.OnNeedyActivation += OnNeedyActivation;
 		Module2.OnFocus += delegate { holding = true; };
 		Module2.OnDefocus += delegate { holding = false; };
+		Module2.OnHighlight += delegate { highlight = true; };
+		Module2.OnHighlightEnded += delegate { highlight = false; };
 	}
 
 	// Just used to get rid of normal neediness
@@ -73,12 +76,13 @@ public class kawaiitlynScript : MonoBehaviour
     }
 
 	#pragma warning disable 414
-	private string TwitchHelpMessage = "Just send me any command to be with me. You must stay with me until I'm happy again, though.";
+	private string TwitchHelpMessage = "Just send me any command to be with me.";
 	#pragma warning restore 414
 	IEnumerator ProcessTwitchCommand(string command)
 	{
+		yield return null;
 		while (t > 0)
-			yield return null;
+			yield return "trycancel";
 	}
 
 	IEnumerator TwitchHandleForcedSolve()
