@@ -21,8 +21,8 @@ public class kawaiitlynScript : MonoBehaviour
 	void Awake()
 	{
 		Module.OnNeedyActivation += OnNeedyActivation;
-		Module2.OnInteract += delegate { holding = true; return false; };
-		Module2.OnDeselect += delegate { holding = false; };
+		Module2.OnFocus += delegate { holding = true; };
+		Module2.OnDefocus += delegate { holding = false; };
 	}
 
 	// Just used to get rid of normal neediness
