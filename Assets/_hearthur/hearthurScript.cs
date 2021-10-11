@@ -95,7 +95,10 @@ public class hearthurScript : MonoBehaviour
 	IEnumerator TwitchHandleForcedSolve()
 	{
 		while (true)
+        {
+			holding = false;
 			yield return true;
+		}
 	}
 
 }

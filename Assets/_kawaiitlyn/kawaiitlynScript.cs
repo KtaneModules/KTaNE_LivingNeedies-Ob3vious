@@ -89,14 +89,7 @@ public class kawaiitlynScript : MonoBehaviour
 	{
 		while (true)
 		{
-			if (!holding)
-			{
-				holding = true;
-				Module2.OnHighlight();
-				while (t > 0) yield return null;
-				holding = false;
-				Module2.OnHighlightEnded();
-			}
+			holding = true;
 			yield return true;
 		}
 	}
