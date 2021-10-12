@@ -13,7 +13,6 @@ public class kawaiitlynScript : MonoBehaviour
 
 	private bool positioned = false;
 	private bool holding = false;
-	private bool highlight = false;
 	private int t = 0;
 
 	private static readonly int[][] Takes = { new int[] { 2, 2, 2, 2, 3, 2, 2 }, new int[] { 3, 3, 3, 3, 3, 3, 3, 3 }, new int[] { 3, 3, 3, 3, 3, 3, 3, 3 }, new int[] { 3, 3, 4, 4, 3, 3, 3 } };
@@ -23,8 +22,6 @@ public class kawaiitlynScript : MonoBehaviour
 		Module.OnNeedyActivation += OnNeedyActivation;
 		Module2.OnFocus += delegate { holding = true; };
 		Module2.OnDefocus += delegate { holding = false; };
-		Module2.OnHighlight += delegate { highlight = true; };
-		Module2.OnHighlightEnded += delegate { highlight = false; };
 	}
 
 	// Just used to get rid of normal neediness
