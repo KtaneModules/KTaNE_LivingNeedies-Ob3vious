@@ -1,7 +1,6 @@
 ﻿// You wanted to explore her inside I see?
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
 
@@ -21,8 +20,8 @@ public class kawaiitlynScript : MonoBehaviour
 	void Awake()
 	{
 		Module.OnNeedyActivation += OnNeedyActivation;
-		Module2.OnInteract += delegate { holding = true; return false; };
-		Module2.OnDeselect += delegate { holding = false; };
+		Module2.OnFocus += delegate { holding = true; };
+		Module2.OnDefocus += delegate { holding = false; };
 	}
 
 	// Just used to get rid of normal neediness
@@ -73,18 +72,16 @@ public class kawaiitlynScript : MonoBehaviour
 		Audio.PlaySoundAtTransform(new string[] { "Neutral","Concern","Anxious","Desperate" }[state] + " line " + (pick + 1) + " take " + (Rnd.Range(0, Takes[state][pick]) + 1), Module.transform);
     }
 
-#pragma warning disable 414
-	private string TwitchHelpMessage = "Just send me any command to be with me. You must stay with me until I'm happy again, though.";
-#pragma warning restore 414
+	#pragma warning disable 414
+	private string TwitchHelpMessage = "Just send me any command to be with me.";
+	#pragma warning restore 414
 	IEnumerator ProcessTwitchCommand(string command)
 	{
+		yield return null;
 		while (t > 0)
-		{
-			holding = true;
-			yield return null;
-		}
-		holding = false;
+			yield return "trycancel";
 	}
+
 	IEnumerator TwitchHandleForcedSolve()
 	{
 		while (true)
@@ -93,4 +90,5 @@ public class kawaiitlynScript : MonoBehaviour
 			yield return true;
 		}
 	}
+
 }

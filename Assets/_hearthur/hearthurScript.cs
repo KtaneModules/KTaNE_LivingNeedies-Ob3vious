@@ -19,8 +19,8 @@ public class hearthurScript : MonoBehaviour
 	void Awake()
 	{
 		Module.OnNeedyActivation += OnNeedyActivation;
-		Module2.OnInteract += delegate { holding = true; return false; };
-		Module2.OnDeselect += delegate { holding = false; };
+		Module2.OnFocus += delegate { holding = true; };
+		Module2.OnDefocus += delegate { holding = false; };
 	}
 
 	// Just used to get rid of normal neediness
@@ -82,21 +82,23 @@ public class hearthurScript : MonoBehaviour
 		}
 	}
 
-#pragma warning disable 414
-	private string TwitchHelpMessage = "Please don't send anything. You'll only cause problems.";
-#pragma warning restore 414
+	#pragma warning disable 414
+	private string TwitchHelpMessage = "Please don't send anything while I'm beating. You'll only cause problems.";
+	#pragma warning restore 414
 	IEnumerator ProcessTwitchCommand(string command)
 	{
-		holding = true;
 		yield return null;
-		holding = false;
+		if (active)
+			yield return "strike";
 	}
+
 	IEnumerator TwitchHandleForcedSolve()
 	{
 		while (true)
-		{
+        {
 			holding = false;
 			yield return true;
 		}
 	}
+
 }
