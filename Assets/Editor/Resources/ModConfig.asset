@@ -14,11 +14,11 @@ MonoBehaviour:
   id: livingNeedies
   title: Living needies
   author: Obvious
-  description: 'This modpack contains needies that have a life. Meet hearthur and
+  description: 'This modpack contains needies that have a life. Meet Hearthur and
     Kawaiitlyn!
 
 
     Thanks to SilverGlimse#3140 for voicing Kawaiitlyn!'
-  version: 1.1
+  version: 1.2
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 8707e85e86d6ac34c82f3faa3c1f585a, type: 3}
